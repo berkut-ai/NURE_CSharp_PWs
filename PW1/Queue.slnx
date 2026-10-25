@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Queue_Data_Structure/Queue_Data_Structure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Queue.Tests/Queue.Tests.csproj" />
+  </Folder>
+</Solution>
