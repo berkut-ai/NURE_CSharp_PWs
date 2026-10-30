@@ -83,13 +83,13 @@ public class Queue : IQueue{
     public Queue(object obj)
     {
         Queue other;
-        if (obj is not Queue)
+        if (obj is not Queue queue)
         {
             throw new ArgumentException("obj must be Queue");
         }
         else
         {
-            other = (Queue)obj;
+            other = queue;
         }
         head = null;
         tail = null;

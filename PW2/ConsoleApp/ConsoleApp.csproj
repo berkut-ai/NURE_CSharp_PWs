@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ClsLib\ClsLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ClsLib">
+      <HintPath>..\ClsLib\bin\Debug\net10.0\ClsLib.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
