@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="FiveInARow.Core/FiveInARow.Core.csproj" />
+  <Project Path="FiveInARow.Tests/FiveInARow.Tests.csproj" />
+  <Project Path="FiveInARow.WinForms/FiveInARow.WinForms.csproj" />
+</Solution>
