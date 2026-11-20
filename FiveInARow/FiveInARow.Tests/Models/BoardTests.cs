@@ -131,7 +131,6 @@ public class BoardTests
 
     private sealed class ForeignMemento : IBoardMemento
     {
-        
-        
+        public (int[,], int) GetState() => (new int[,] {{0, 0}}, 0);
     }
 }
