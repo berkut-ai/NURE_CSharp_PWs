@@ -4,6 +4,17 @@ public class Move
 {
     private int row, col, val;
 
+    public Move()
+    {
+        
+    }
+    public Move(int r, int c, int v)
+    {
+        row = r;
+        col = c;
+        val = v;
+    }
+
     public int Row
     {
         get => row;

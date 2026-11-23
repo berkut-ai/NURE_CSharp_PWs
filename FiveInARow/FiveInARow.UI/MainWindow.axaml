@@ -1,0 +1,19 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:v="using:FiveInARow.UI"
+        x:Class="FiveInARow.UI.MainWindow"
+        Title="П'ять в ряд" SizeToContent="WidthAndHeight" CanResize="False">
+    <StackPanel Margin="10" Spacing="8">
+        <StackPanel Orientation="Horizontal" Spacing="8">
+            <Button x:Name="BtnNewGame" Content="New Game"/>
+            <Button x:Name="BtnUndo" Content="Undo "/>
+            <ComboBox x:Name="CbDifficulty" SelectedIndex="0" Width="140">
+                <ComboBoxItem>Easy</ComboBoxItem>
+                <ComboBoxItem>Medium</ComboBoxItem>
+                <ComboBoxItem>Hard</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <TextBlock x:Name="LblStatus" Text="Your Turn"/>
+        <v:BoardControl x:Name="BoardView"/>
+    </StackPanel>
+</Window>

@@ -7,9 +7,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ClsLib\ClsLib.csproj" />
-  </ItemGroup>
 
   <ItemGroup>
     <Reference Include="ClsLib">

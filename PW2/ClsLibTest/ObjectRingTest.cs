@@ -159,6 +159,7 @@ public class ObjectRingTest
         Assert.True(res);
     }
 
+    
     [Fact]
     public void Test_Equals_With_Different_Contents()
     {
@@ -173,6 +174,8 @@ public class ObjectRingTest
         Assert.False(lengthResult);
     }
 
+    
+    
     [Fact]
     public void Test_Equality_Operators()
     {
@@ -182,6 +185,7 @@ public class ObjectRingTest
         ObjectRing? missing = null;
 
         bool equalResult = first == equal;
+        
         bool notEqualResult = first != different;
         bool nullEqualityResult = first == missing;
         bool nullInequalityResult = first != missing;
@@ -189,9 +193,11 @@ public class ObjectRingTest
         Assert.True(equalResult);
         Assert.True(notEqualResult);
         Assert.False(nullEqualityResult);
+        
         Assert.True(nullInequalityResult);
     }
 
+    
     [Fact]
     public void Test_True_And_False_Operators()
     {
@@ -211,9 +217,12 @@ public class ObjectRingTest
         ObjectRing ring = new ObjectRing(new int[] { 1, 2, 3 });
 
         ring++;
+        
 
         Assert.Equal("[2, 3, 1]", ring.ToString());
     }
+    
+    
 
     [Fact]
     public void Test_Decrement_Operator()

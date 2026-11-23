@@ -32,10 +32,8 @@ public class ObjectRing : IObjectRing
                 {
                     throw new ArgumentException("obj must be Node");
                 }
-                else
-                {
-                    next = value;
-                }
+                next = value;
+
             }
         }
         public Node(int val, Node? nx = null)
@@ -136,7 +134,7 @@ public class ObjectRing : IObjectRing
         
     }
     
-    public string ToString()
+    public override string ToString()
     {
         string ans = "[";
         Node? cur = head;
@@ -242,8 +240,7 @@ public class ObjectRing : IObjectRing
     {
         if (ring)
             return false;
-        else
-            return true;
+        return true;
 
     }
     
