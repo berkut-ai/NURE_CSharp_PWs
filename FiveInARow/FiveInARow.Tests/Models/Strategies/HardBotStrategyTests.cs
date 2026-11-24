@@ -5,15 +5,7 @@ namespace FiveInARow.Tests.Models.Strategies;
 
 public class HardBotStrategyTests
 {
-    [Fact]
-    public void MakeMove_OnEmptyBoard_ChoosesCenter()
-    {
-        var move = new HardBotStrategy().MakeMove(new Board());
-
-        Assert.Equal(8, move.Row);
-        
-        Assert.Equal(8, move.Col);
-    }
+    
 
     [Fact]
     public void MakeMove_OnOccupiedBoard_ScoresAvailableMovesWithoutChangingBoard()

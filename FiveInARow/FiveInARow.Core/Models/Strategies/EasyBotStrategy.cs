@@ -2,7 +2,7 @@ namespace FiveInARow.Core.Models.Strategies;
 
 public class EasyBotStrategy : BotStrategy
 {
-    public Move MakeMove(Board board)
+    public override Move MakeMove(Board board) 
     {
         Move move = new Move();
 
@@ -10,7 +10,7 @@ public class EasyBotStrategy : BotStrategy
         
         
 
-        for (int row = 1; row < board.Height; ++row)
+        for (int row = 1; row <= board.Height; ++row)
         {
             for (int col = 1; col <= board.Width; ++col)
             {
@@ -25,7 +25,8 @@ public class EasyBotStrategy : BotStrategy
                     foreach (var (dr, dc) in dirs)
                     {
                         if (board.checkIndexes(row + dr, col + dc)
-                            && board.checkIndexes(row - dr, col - dc)){
+                            && board.checkIndexes(row - dr, col - dc)
+                            && board.Get(row + dr, col + dc) == 0){
                             move.Row = row + dr;
                             move.Col = col + dc;
                             return move;

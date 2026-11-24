@@ -2,24 +2,19 @@ namespace FiveInARow.Core.Models.Strategies;
 
 public class MediumBotStrategy : BotStrategy
 {
-    public Move MakeMove(Board board)
+    public override Move MakeMove(Board board)
     {
         Move move = new Move();
         
-        if (board.FreeCells == board.Height * board.Width)
-        {
-            move.Row = board.Height / 2 + 1;
-            move.Col = board.Width / 2 + 1;
-            return move;
-        }
+        
 
         int f_row = 1, f_col = 1;
         
         
 
-        for (int row = 1; row < board.Height; ++row)
+        for (int row = 1; row <= board.Height; ++row)
         {
-            for (int col = 1; col < board.Width; ++col)
+            for (int col = 1; col <= board.Width; ++col)
             {
                 int mark = board.Get(row, col);
 

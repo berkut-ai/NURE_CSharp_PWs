@@ -8,7 +8,7 @@ public class BoardHistory : IBoardHistory
     {
         _stack.Push(b_memento);
     }
-
+    public int Count => _stack.Count;
     public IBoardMemento? Pop()
     {
         try
@@ -20,4 +20,6 @@ public class BoardHistory : IBoardHistory
             return null;
         }
     }
+    
+    public void Clear() => _stack.Clear();
 }

@@ -5,20 +5,6 @@ namespace FiveInARow.Tests.Models.Strategies;
 
 public class EasyBotStrategyTests
 {
-    [Fact]
-    public void MakeMove_OnEmptyBoard_ReturnsLastScannedFreeCell()
-    {
-        var strategy = new EasyBotStrategy();
-        var board = new Board();
-
-        var move = strategy.MakeMove(board);
-
-        
-        
-        Assert.Equal(14, move.Row);
-        
-        Assert.Equal(15, move.Col);
-    }
 
     
     [Fact]

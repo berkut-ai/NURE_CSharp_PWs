@@ -38,16 +38,11 @@ public class HardBotStrategy : BotStrategy
         };
     }
     
-    public Move MakeMove(Board board)
+    public override Move MakeMove(Board board)
     {
         Move move = new Move();
 
-        if (board.FreeCells == board.Height * board.Width)
-        {
-            move.Row = board.Height / 2 + 1;
-            move.Col = board.Width / 2 + 1;
-            return move;
-        }
+        
         
         int best = -1;
         var best_cells = new List<(int row, int col)>();

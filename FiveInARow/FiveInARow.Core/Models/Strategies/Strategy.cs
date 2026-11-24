@@ -1,9 +1,9 @@
 namespace FiveInARow.Core.Models.Strategies;
 
-public class BotStrategy : IBotStrategy
+public abstract class BotStrategy : IBotStrategy
 {
     protected static readonly (int dr, int dc)[] dirs = { (0, 1), (1, 0), (1, 1), (1, -1) };
-    public Move MakeMove(Board board)
+    public virtual Move MakeMove(Board board)
     {
         throw new NotImplementedException();
     }

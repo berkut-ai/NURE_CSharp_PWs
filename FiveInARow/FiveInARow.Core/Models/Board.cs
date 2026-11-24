@@ -43,14 +43,15 @@ public class Board : IBoard
     public bool checkIndexes(int i, int j)
     {
         if (!(1 <= i && i <= _height) || !(1 <= j && j <= _width))
-            throw new IndexOutOfRangeException("row or column are out of board");
+            return false;
         return true;
     }
     
 
     public int Get(int row, int col)
     {
-        checkIndexes(row, col);
+        if (!checkIndexes(row, col))
+            throw new IndexOutOfRangeException();
 
         return _board[row-1, col-1];
     }
@@ -59,7 +60,8 @@ public class Board : IBoard
     {
         int row = move.Row, col = move.Col, val = move.Val;
         
-        checkIndexes(row, col);
+        if (!checkIndexes(row, col))
+            throw new IndexOutOfRangeException();
 
         row--;
         col--;
@@ -84,7 +86,7 @@ public class Board : IBoard
     {
         int n = 0;
         r += dr; c += dc;
-        while (checkIndexes(r, c) && board[r, c] == mark)
+        while (checkIndexes(r+1, c+1) && board[r, c] == mark)
         {
             n++; 
             r += dr; 
@@ -115,6 +117,9 @@ public class Board : IBoard
             for (int col = 0; col < _width; ++col)
             {
                 int mark = _board[row, col];
+                
+                if (mark == 0)
+                    continue;
 
                 if (checkIf5InARow(_board, row, col, mark))
                 {
@@ -124,7 +129,7 @@ public class Board : IBoard
             }
         }
 
-        return -1;
+        return 0;
     }
 
     public IBoardMemento Save()
@@ -137,5 +142,11 @@ public class Board : IBoard
         if (memento is not BoardMemento b_memento)
             return;
         (_board, _free_cells) = b_memento.GetState();
+    }
+
+    public void Clear()
+    {
+        _board = new int[_height, _width];
+        _free_cells = _height * _width;
     }
 }
