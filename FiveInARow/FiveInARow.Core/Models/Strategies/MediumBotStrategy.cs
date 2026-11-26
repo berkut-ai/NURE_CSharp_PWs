@@ -35,7 +35,7 @@ public class MediumBotStrategy : BotStrategy
                         // if (row, col) blocks the victory of player
                         fwd = cntDir(board, row, col, dr, dc, Player.Mark);
                         back = cntDir(board, row, col, -dr, -dc, Player.Mark);
-                        if (fwd + back == 4)
+                        if (fwd + back >= 3)
                         {
                             move.Row = row;
                             move.Col = col;

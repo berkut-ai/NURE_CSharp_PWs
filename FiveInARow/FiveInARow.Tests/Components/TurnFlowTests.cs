@@ -10,12 +10,14 @@ public class TurnFlowTests
     {
         var board = new Board();
         var player = new Player();
+        
         var bot = new Bot(new FixedStrategy(8, 8));
 
         board.Set(player.MakeMove(board, 8, 7));
         board.Set(bot.MakeMove(board));
 
         Assert.Equal(Player.Mark, board.Get(8, 7));
+        
         Assert.Equal(Player2.Mark, board.Get(8, 8));
         Assert.Equal(223, board.FreeCells);
     }

@@ -12,17 +12,21 @@ public class GameControllerTests
         var board = new Board();
         var strategy = new FixedStrategy(8, 8);
         var controller = new GameController(board, strategy);
+        
 
         Assert.True(controller.HandleCLick(4, 5));
 
         Assert.Equal(Player.Mark, board.Get(4, 5));
         Assert.Equal(Player2.Mark, board.Get(8, 8));
+        
         Assert.Equal(223, board.FreeCells);
         Assert.Equal(GameResult.None, controller.Result);
         Assert.True(controller.canUndo);
         Assert.Equal(1, strategy.CallCount);
     }
 
+    
+    
     [Theory]
     [InlineData(0, 1)]
     [InlineData(1, 0)]
@@ -32,22 +36,28 @@ public class GameControllerTests
     {
         var board = new Board();
         var strategy = new FixedStrategy(8, 8);
+        
         var controller = new GameController(board, strategy);
 
         Assert.False(controller.HandleCLick(row, col));
 
         Assert.Equal(225, board.FreeCells);
         Assert.Equal(0, strategy.CallCount);
+        
         Assert.False(controller.canUndo);
     }
 
+    
+    
     [Fact]
     public void HandleClick_OccupiedCellIsIgnored()
     {
         var board = new Board();
         board.Set(new Move(4, 5, Player.Mark));
         var strategy = new FixedStrategy(8, 8);
+        
         var controller = new GameController(board, strategy);
+        
 
         Assert.False(controller.HandleCLick(4, 5));
 
@@ -61,12 +71,15 @@ public class GameControllerTests
         var board = new Board();
         for (var col = 1; col <= 4; col++)
             board.Set(new Move(7, col, Player.Mark));
+        
         var strategy = new FixedStrategy(10, 10);
         var controller = new GameController(board, strategy);
 
+        
         Assert.True(controller.HandleCLick(7, 5));
 
         Assert.Equal(GameResult.PlayerWon, controller.Result);
+        
         Assert.Equal(0, strategy.CallCount);
         Assert.Equal(Player.Mark, board.Get(7, 5));
     }
@@ -80,41 +93,52 @@ public class GameControllerTests
         var controller = new GameController(board, new FixedStrategy(7, 5));
 
         Assert.True(controller.HandleCLick(10, 10));
+        
 
         Assert.Equal(GameResult.BotWon, controller.Result);
         Assert.Equal(Player2.Mark, board.Get(7, 5));
     }
 
+    
+    
     [Fact]
     public void HandleClick_FillingLastCellEndsInDraw()
     {
         var board = CreateNearlyFullNonWinningBoard((15, 15));
         Assert.Equal(0, board.CheckWinner());
         var strategy = new FixedStrategy(8, 8);
+        
         var controller = new GameController(board, strategy);
 
         Assert.True(controller.HandleCLick(15, 15));
 
         Assert.Equal(GameResult.Draw, controller.Result);
+        
         Assert.Equal(0, board.FreeCells);
         Assert.Equal(0, strategy.CallCount);
     }
 
+    
+    
     [Fact]
     public void HandleClick_BotFillingLastCellEndsInDraw()
     {
         var board = CreateNearlyFullNonWinningBoard((15, 14), (15, 15));
         Assert.Equal(0, board.CheckWinner());
         var strategy = new FixedStrategy(15, 15);
+        
         var controller = new GameController(board, strategy);
 
         Assert.True(controller.HandleCLick(15, 14));
 
         Assert.Equal(GameResult.Draw, controller.Result);
+        
         Assert.Equal(0, board.FreeCells);
         Assert.Equal(1, strategy.CallCount);
     }
 
+    
+    
     [Fact]
     public void Undo_WithoutPreviousMoveReturnsFalse()
     {
@@ -123,10 +147,13 @@ public class GameControllerTests
         Assert.False(controller.Undo());
     }
 
+    
+    
     [Fact]
     public void Undo_RestoresBoardAndClearsGameResult()
     {
         var board = new Board();
+        
         for (var col = 1; col <= 4; col++)
             board.Set(new Move(7, col, Player.Mark));
         var controller = new GameController(board, new FixedStrategy(8, 8));
@@ -136,6 +163,7 @@ public class GameControllerTests
 
         Assert.Equal(0, board.Get(7, 5));
         Assert.Equal(GameResult.None, controller.Result);
+        
         Assert.Equal(221, board.FreeCells);
     }
 
@@ -144,13 +172,16 @@ public class GameControllerTests
     {
         var board = new Board();
         var controller = new GameController(board, new FixedStrategy(8, 8));
+        
         controller.HandleCLick(4, 5);
 
         controller.newGame();
 
         Assert.Equal(0, board.Get(4, 5));
         Assert.Equal(0, board.Get(8, 8));
+        
         Assert.Equal(GameResult.None, controller.Result);
+        
         Assert.False(controller.canUndo);
     }
 
@@ -163,6 +194,7 @@ public class GameControllerTests
         var controller = new GameController(new Board(), new FixedStrategy(8, 8));
 
         controller.setDifficulty(difficulty);
+        
 
         Assert.IsType(strategyType, controller.Strategy);
     }
