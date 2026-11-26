@@ -27,14 +27,5 @@ public class StrategyFallbackTests
         Assert.Equal(15, move.Row);
         Assert.Equal(15, move.Col);
     }
-
-    [Fact]
-    public void BaseStrategy_WithoutOverride_ReportsNotImplemented()
-    {
-        Assert.Throws<NotImplementedException>(() => new UnimplementedStrategy().MakeMove(new Board()));
-    }
-
-    private sealed class UnimplementedStrategy : BotStrategy
-    {
-    }
+    
 }

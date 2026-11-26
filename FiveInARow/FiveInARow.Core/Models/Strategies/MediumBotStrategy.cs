@@ -1,8 +1,8 @@
 namespace FiveInARow.Core.Models.Strategies;
 
-public class MediumBotStrategy : BotStrategy
+public class MediumBotStrategy : IBotStrategy
 {
-    public override Move MakeMove(Board board)
+    public Move MakeMove(Board board)
     {
         Move move = new Move();
         
@@ -20,11 +20,11 @@ public class MediumBotStrategy : BotStrategy
 
                 if (mark == 0)
                 {
-                    foreach (var (dr, dc) in dirs)
+                    foreach (var (dr, dc) in BotStrategyUtils.dirs)
                     {
                         // if (row, col) wins
-                        int fwd = cntDir(board, row, col, dr, dc, Bot.Mark);
-                        int back = cntDir(board, row, col, -dr, -dc, Bot.Mark);
+                        int fwd = BotStrategyUtils.cntDir(board, row, col, dr, dc, Bot.Mark);
+                        int back = BotStrategyUtils.cntDir(board, row, col, -dr, -dc, Bot.Mark);
                         if (fwd + back == 4)
                         {
                             move.Row = row;
@@ -33,8 +33,8 @@ public class MediumBotStrategy : BotStrategy
                         }
                         
                         // if (row, col) blocks the victory of player
-                        fwd = cntDir(board, row, col, dr, dc, Player.Mark);
-                        back = cntDir(board, row, col, -dr, -dc, Player.Mark);
+                        fwd = BotStrategyUtils.cntDir(board, row, col, dr, dc, Player.Mark);
+                        back = BotStrategyUtils.cntDir(board, row, col, -dr, -dc, Player.Mark);
                         if (fwd + back >= 3)
                         {
                             move.Row = row;

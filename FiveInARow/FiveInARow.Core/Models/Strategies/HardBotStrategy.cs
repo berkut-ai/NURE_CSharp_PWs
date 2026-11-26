@@ -1,15 +1,15 @@
 namespace FiveInARow.Core.Models.Strategies;
 
-public class HardBotStrategy : BotStrategy
+public class HardBotStrategy : IBotStrategy
 {
     private readonly Random _rng = new Random();
     private static long evaluateValue(Board board, int row, int col, int mark)
     {
         long total = 0;
-        foreach (var (dr, dc) in dirs)
+        foreach (var (dr, dc) in BotStrategyUtils.dirs)
         {
-            int fwd = cntDir(board, row, col, dr, dc, mark);
-            int back = cntDir(board, row, col, -dr, -dc, mark);
+            int fwd = BotStrategyUtils.cntDir(board, row, col, dr, dc, mark);
+            int back = BotStrategyUtils.cntDir(board, row, col, -dr, -dc, mark);
             int len = 1 + fwd + back; // len of chain if put at (row, col)
 
             // is open at one side
@@ -38,7 +38,7 @@ public class HardBotStrategy : BotStrategy
         };
     }
     
-    public override Move MakeMove(Board board)
+    public Move MakeMove(Board board)
     {
         Move move = new Move();
 
